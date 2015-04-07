@@ -4,6 +4,6 @@ from SimpleCV import Display
 cam = Camera()
 disp = Display()
 
-while disp.isNotDon():
+while disp.isNotDone():
     img=cam.getImage()
     
