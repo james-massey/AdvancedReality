@@ -6,4 +6,3 @@ disp = Display()
 
 while disp.isNotDone():
     img=cam.getImage()
-    
