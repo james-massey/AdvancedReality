@@ -46,8 +46,14 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CameraControl.cs" />
      <Compile Include="Assets\DisplaySphereData.cs" />
+     <Compile Include="Assets\Keyboard_MoveSphere.cs" />
+     <Compile Include="Assets\MenuControl.cs" />
      <Compile Include="Assets\ReadCoorData.cs" />
+     <Compile Include="Assets\TestMove.cs" />
+     <Compile Include="Assets\WebcamTexturize.cs" />
+     <None Include="Assets\TestCoordinates.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
