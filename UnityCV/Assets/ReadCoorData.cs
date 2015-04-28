@@ -9,12 +9,9 @@ public class ReadCoorData : MonoBehaviour
 {
 	public Transform target;
 
-	private float time = 3.0f;
-	private float timer = 0.0f;
-	
-	private string textFile = "C:/Users/Megatron/Documents/UnityCV/Assets/TestCoordinates.txt";
+	private string textFile = "C:/Users/Megatron/Documents/GitHub/AdvancedReality/UnityCV/Assets/TestCoordinates.txt";
 
-	private List<Vector3> Coordinates = new List<Vector3>();
+	public static List<Vector3> Coordinates = new List<Vector3>();
 
 	private List<Vector3> Load(string fileName)
 	{
@@ -56,25 +53,10 @@ void Start ()
 // Update is called once per frame
 void Update () 
 {
-		timer += Time.deltaTime;
-		if (Coordinates.Count > 0) {
-			if (timer > time) {
-				target.position = Coordinates [0];
-				Coordinates.Remove (Coordinates [0]);
-				timer = 0.0f;
-			}
+		if (Coordinates.Count <= 0)
+		{
+				Coordinates=Load (textFile);
 		} 
-		else 
-		{
-			Coordinates=Load (textFile);
-		}
-		/*
-		Coordinates=Load(textFile);
-		foreach (Vector3 vector in Coordinates)
-		{
-			Debug.Log (vector);
-		}
-		*/
 }
 
 }

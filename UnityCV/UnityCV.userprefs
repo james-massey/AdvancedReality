@@ -1,15 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ReadCoorData.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\TestCoordinates.txt">
     <Files>
-      <File FileName="Assets\ReadCoorData.cs" Line="52" Column="2" />
+      <File FileName="Assets\DisplayRobotData.cs" Line="22" Column="2" />
       <File FileName="Assets\DisplaySphereData.cs" Line="1" Column="1" />
-      <File FileName="Assets\Keyboard_MoveSphere.cs" Line="1" Column="1" />
-      <File FileName="Assets\TestCoordinates.txt" Line="9" Column="7" />
-      <File FileName="Assets\TestMove.cs" Line="1" Column="1" />
       <File FileName="Assets\MenuControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\WebcamTexturize.cs" Line="16" Column="14" />
-      <File FileName="Assets\CameraControl.cs" Line="26" Column="30" />
+      <File FileName="Assets\TestMove.cs" Line="25" Column="27" />
+      <File FileName="Assets\ReadCoorData.cs" Line="27" Column="7" />
+      <File FileName="Assets\Test_Exe.cs" Line="7" Column="119" />
+      <File FileName="Assets\TestCoordinates.txt" Line="1" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
