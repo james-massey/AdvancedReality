@@ -17,6 +17,7 @@ public class Test_Exe : MonoBehaviour
 	{
 		applicationPath = Application.dataPath;
 		UnityEngine.Debug.Log (applicationPath);
+		my_process= new Process();
 		my_process.StartInfo.FileName = "python.exe";
 		my_process.StartInfo.Arguments = filepath;
 		my_process.Start ();
