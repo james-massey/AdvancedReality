@@ -1,0 +1,35 @@
+from SimpleCV import*
+
+display = SimpleCV.Display() #Opens Display
+cam = Camera()               #Enables Camera   
+
+while display.isNotDone():   #Runs loop until display is not true.
+    
+    img = cam.getImage().flipHorizontal()  #Sets variable img to image on camera and flips image on screen is not inverted directionally.
+    gray = img.grayscale()                 #Turns the image to the gray scale. 
+    segmented = gray.stretch(200,255)      #Pushes back pixels that are all colors farthest away from white. 
+    blobs = segmented.findBlobs()          #Detects object that is of the color white.                                
+
+    if blobs:
+        circles = blobs.filter([b.isCircle(0.2) for b in blobs])    #If there is a blob detected determines if circular.
+        s1 = str(blobs.coordinates())                               #Saves the center coordinates of "Blob" detected to a string value. 
+        f = open('C','w')                                           #Opens file C and sets it to be written to. 
+        f.write(s1)                                                 #Writes the string variable to file C. 
+        f.close()
+        if circles:
+            gray.drawCircle((circles[-1].x,circles[-1].y),circles[-1].radius(),SimpleCV.Color.GREEN,3) #If circular this code draws a green circle around the blob.
+            bluesquare = DrawingLayer((gray.width, gray.height)) #The following 6 lines of code draws a blue box if a circular blob is detected.
+            bluesquare_dim = (600,450)
+            centered = (gray.width / 2, gray.height / 2)
+            boxs = bluesquare.centeredRectangle(centered, bluesquare_dim, SimpleCV.Color.BLUE)
+            gray.addDrawingLayer(bluesquare)
+            gray.applyLayers()            
+            gray.show()  #Shows the image on the display screen.
+        else:
+            redsquare = DrawingLayer((gray.width, gray.height))  #The following 6 lines of code draws a red box if there is no circular blob detected.
+            redsquare_dim = (600,450)
+            center = (gray.width / 2, gray.height / 2)
+            box = redsquare.centeredRectangle(center, redsquare_dim, SimpleCV.Color.RED)
+            gray.addDrawingLayer(redsquare)
+            gray.applyLayers()
+            gray.show()  #Shows the image on the display screen.
