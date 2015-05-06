@@ -9,7 +9,11 @@ public class ReadCoorData : MonoBehaviour
 {
 	public Transform target;
 
-	private string textFile = "C:/Users/Megatron/Documents/GitHub/AdvancedReality/UnityCV/Assets/TestCoordinates.txt";
+	//private string textFile = "C:/Users/Megatron/Documents/GitHub/AdvancedReality/UnityCV/Assets/TestCoordinates.txt";
+
+	private string appPath;
+	private string fileName = "TestCoordinates.txt";
+	private string path;
 
 	public static List<Vector3> Coordinates = new List<Vector3>();
 
@@ -47,7 +51,10 @@ public class ReadCoorData : MonoBehaviour
 // Use this for initialization
 void Start ()
 {
-		Coordinates=Load(textFile);
+		appPath = Application.dataPath;
+		path = Application.dataPath + "/" + fileName;
+
+		Coordinates=Load(path);
 }
 
 // Update is called once per frame
@@ -55,7 +62,7 @@ void Update ()
 {
 		if (Coordinates.Count <= 0)
 		{
-				Coordinates=Load (textFile);
+				Coordinates=Load (path);
 		} 
 }
 
