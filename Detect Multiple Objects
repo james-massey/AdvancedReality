@@ -1,0 +1,44 @@
+from SimpleCV import*        #Imports SimpleCV
+
+display = SimpleCV.Display() #Opens Display
+cam = Camera()               #Enables Camera   
+
+while display.isNotDone():   #Runs loop until display is not true.
+    
+    img = cam.getImage().flipHorizontal()  #Sets variable img to image on camera and flips image on screen is not inverted directionally.
+    gray = img.grayscale()                 #Turns the image to the gray scale.
+    segmented = gray.stretch(200,255)      #Pushes back pixels that are all colors farthest away from white. 
+    objects = segmented.findBlobs()        #Detects object that is of the color white and saves the gray scalled data to variable objects.
+
+    if objects:
+            circles = objects.filter([b.isCircle(0.2) for b in objects])        #If there is a blob detected determines if circular.
+            squares = objects.filter([e.isSquare(0.1,0.1) for e in objects])    #If there is a blob detected determines if Square.
+            f = open('C','w')                                                   #Opens file C and sets it to be written to. 
+            if squares:
+                rect = ('This is Square Coordinates', squares.coordinates())    #Sets coordinates of square detected to varable called rect.
+                s1 = str(rect)                                                  #Saves the center coordinates of square detected to a string value.  
+                f.write(s1)                                                     #Writes the string variable to file C. 
+                f.write('\n')
+                if circles:
+                    cir = ('This is Circle Coordinates', circles.coordinates()) #Sets coordinates of circle detected to varable called cir.
+                    sr3 = str(cir)                                              #Saves the center coordinates of circle detected to a string value. 
+                    f.write(sr3)                                                #Writes the string variable to file C.
+                    f.close()
+                    img.drawCircle((circles[-1].x,circles[-1].y),circles[-1].radius(),SimpleCV.Color.GREEN,3)  #Draws a circle around the largest circle detected.
+                bluesquare = DrawingLayer((img.width, img.height))              #The following 6 lines of code draws a blue box if a circular blob is detected.
+                bluesquare_dim = (600,450)
+                centered = (img.width / 2, img.height / 2)
+                boxs = bluesquare.centeredRectangle(centered, bluesquare_dim, SimpleCV.Color.BLUE)
+                img.addDrawingLayer(bluesquare)
+                img.applyLayers()            
+                img.show()
+            else:
+                redsquare = DrawingLayer((img.width, img.height))  #The following 6 lines of code draws a red box if there is no circular blob detected.
+                redsquare_dim = (600,450)
+                center = (img.width / 2, img.height / 2)
+                box = redsquare.centeredRectangle(center, redsquare_dim, SimpleCV.Color.RED)
+                img.addDrawingLayer(redsquare)
+                img.applyLayers()
+                img.show()  #Shows the image on the display screen.
+            f.close()       #Closes the file called C.
+
