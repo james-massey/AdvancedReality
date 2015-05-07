@@ -1,0 +1,20 @@
+from SimpleCV import*         #Imports SimpleCV
+
+display = SimpleCV.Display()  #Opens Display
+cam = Camera()                #Enables Camera  
+
+while display.isNotDone():            #Runs loop until display is not true.
+
+    img = cam.getImage()              #Sets variable img to image on camera and flips image on screen is not inverted directionally.
+    gray = img.grayscale()            #Turns the image to the gray scale.
+    segment = gray.stretch(200,255)   #Pushes back pixels that are all colors farthest away from white.
+    objects = segment.findBlobs()     #Detects object that is of the color white and saves the gray scalled data to variable objects.
+    if objects:
+        ball = objects.filter([one.isCircle(0.2) for one in objects])  #If there is a blob detected determines if circular.
+        ballcoord = ball.coordinates()  #Sets coordinates of circle detected to varable called ballcoord.
+        ballString = str(ballcoord)     #Sets coordinates of circle to string and saves that string to variable called ballString
+        txt = open('C','w')             #Opens up file called C.
+        txt.write(ballString)           #Writes coordinates of ball to string in x and y plane.
+        txt.close()                     #Closes file called C
+
+    img.show()      #Displays image on display screen.
