@@ -6,3 +6,5 @@ disp = Display()
 
 while disp.isNotDone():
     img=cam.getImage()
+    img.show()
+    img.save("test.jpg")
